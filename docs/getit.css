@@ -133,12 +133,35 @@ html, body {
   
   border-radius: 10px;
   margin:   10px 5px;
-  padding: 10px;
+  padding: 25px 5px 5px 10px;
   width: 13rem;
   min-height: 6rem;
 
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2);
   
+}
+
+.material-icons{
+  position: absolute;
+  font-size: small;
+  top: 5px;
+  border: none;
+  background-color: #BD0E0E00;
+  cursor: pointer;
+}
+
+.material-icons:hover {
+  font-weight: bolder;
+  font-size:medium;
+  transition: .2s;
+}
+
+.clear{
+  right: 2px;
+}
+
+.edit {
+  right: 20px;
 }
 
 .card-title{

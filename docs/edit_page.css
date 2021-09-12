@@ -1,0 +1,127 @@
+html, body {
+    font-family: "Roboto", sans-serif;
+    height: 100%;
+  }
+  
+/* ***** CABECALHO ***** */
+.appbar {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    align-items: center;
+    height: 4rem;
+    padding: 5px;
+    background-color: #f7d736;
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.25);
+}
+
+.logo {
+    height: 80%;
+    margin: 5px;
+}
+
+.subtitle {
+    margin: 5px;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 90%;
+}
+  /* ***** ADD-BUTTON ***** */
+.form-card {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+
+    min-height: 15.5em;
+    min-width: 34rem;
+    border-radius: 5px;
+
+    margin: 2rem;
+    padding: .5rem;  
+
+    box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.2);
+}
+  
+  
+.form-card input, .form-card textarea {
+    font-family: "Roboto", sans-serif;
+    border: none;
+    padding-left: 5px;
+}
+  
+.form-card-title {
+    font-size: 20px;
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+  
+.form-card textarea {
+    font-size: 16px;
+    flex-grow: 2;
+    margin: 5px 0px;
+}
+::-webkit-resizer {
+    display: none;
+}
+  
+.btn {
+    font-size: 16px;
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+
+    overflow: hidden;
+
+    border-width: 0;
+    outline: none;
+    border-radius: 2px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+
+    background-color: #abe9c1;
+
+    transition: background-color 0.3s;
+}
+    
+.btn > * {
+    position: relative;
+}
+    
+.btn:before {
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    display: block;
+    width: 0;
+    padding-top: 0;
+
+    border-radius: 100%;
+
+    background-color: rgba(236, 240, 241, 0.3);
+
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.btn:active:before {
+    width: 120%;
+    padding-top: 120%;
+
+    transition: width 0.2s ease-out, padding-top 0.2s ease-out;
+}
+  
+
+  
+
+  

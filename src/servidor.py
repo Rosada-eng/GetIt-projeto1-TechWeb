@@ -73,7 +73,7 @@ while True:
         elif route.startswith("delete"):
             result = db.delete_note(card_id)
             if result == True:
-                response = build_response() + load_index()
+                response = build_response(code=303, reason="See other", headers="\nLocation: /") + load_index()
             else:
                 response = build_response(code=400, reason="Bad Request") + bytes()
 
@@ -83,7 +83,7 @@ while True:
             result = db.add_note(new_note)
 
             if result == True:
-                response = build_response() + load_index()
+                response = build_response(code=303, reason="See other", headers="\nLocation: /") + load_index()
             else:
                 response = build_response(code=400, reason="Bad Request") + bytes() 
     else:

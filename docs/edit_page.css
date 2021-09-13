@@ -83,7 +83,7 @@ html, body {
     border-radius: 2px;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
 
-    background-color: #abe9c1;
+    background-color: #fae890;
 
     transition: background-color 0.3s;
 }
@@ -119,6 +119,11 @@ html, body {
     padding-top: 120%;
 
     transition: width 0.2s ease-out, padding-top 0.2s ease-out;
+}
+
+.btn:hover{
+    background-color: #abe9c1;
+    transition: background-color 0.3s;
 }
   
 

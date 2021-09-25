@@ -1,14 +1,14 @@
 from django.shortcuts import render, redirect
-from .models import Note
+from .models import *
 
 def index(request):
     if request.method == 'POST':
         title   = request.POST.get('titulo')
         content = request.POST.get('detalhes')
+        tag_name = request.POST.get('tag')
 
-        #<> Existem duas formas de se criar uma nova linha na tabela:
-        #<> 1- objects.create(title="...", content="...") --> já usa save (commit)
-        #<> 2- Criar um objeto e usar o método .save
+        tag, created = Tag.objects.get_or_create(name__iexact = tag_name)
+        # devolve created = True, se o objeto for criado.
 
         #% método .create()
         new_note = Note.objects.create(title=title, content=content)

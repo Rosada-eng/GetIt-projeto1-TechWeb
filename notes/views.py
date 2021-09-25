@@ -7,21 +7,20 @@ def index(request):
         content = request.POST.get('detalhes')
         tag_name = request.POST.get('tag')
 
-        tag, created = Tag.objects.get_or_create(name__iexact = tag_name)
-        # devolve created = True, se o objeto for criado.
+        """ 
+            Se o usuário informou um nome para tag, checa se já existe (insensível match)
+            Se não existe, cria uma nova e adiciona relação na Note
+            Se não informou nome para tag, cria uma Note sem relação.
+        """
+        if tag_name:
+            tag, created = Tag.objects.get_or_create(name__iexact = tag_name, defaults={"name": tag_name}) # devolve created = True, se o objeto for criado.
+            print(f"tag criada -- {tag.id}, {tag.name}")
+        else:
+            tag = None
 
-        #% método .create()
-        new_note = Note.objects.create(title=title, content=content)
-        
-        #% Outra forma -- método .save()
-        # new_note = Note(title=title, content=content)
-        # new_note.save()
-
-        """ Obs.: .save() também pode ser utilizado para fazer o UPDATE de alguma linha já existente.
-        Queries: https://docs.djangoproject.com/en/3.1/topics/db/queries/
-        Queries: https://docs.djangoproject.com/en/3.1/ref/models/querysets/#django.db.models.query.QuerySet.create"""
-        
+        new_note = Note.objects.create(title=title, content=content, tag= tag)        
         return redirect('index')
+        
     else:
         all_notes = Note.objects.all()
         return render (request, "notes/index.html", {'notes': all_notes})

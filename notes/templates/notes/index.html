@@ -1,25 +1,47 @@
 {% extends "notes/base.html" %}
 {% load static %}
 
+{% block extra_head %} 
+
+  <link rel="stylesheet" href= "{% static 'notes/styles/getit.css' %}" />
+
+{% endblock %}
+
 {% block content %}
-<img src="{% static 'notes/img/logo-getit.png' %}">
-<p>Como o Post-it, mas com outro verbo</p>
+  <main class="container">
+    <form class="form-card" method='post'>
+      {% csrf_token %}
+      <input
+        class="form-card-title"
+        type="text"
+        name="title"
+        placeholder="Título"
+      />
+      <textarea
+      class="autoresize"
+      name="content"
+      placeholder="Digite o conteúdo..."
+      ></textarea>
+      <input
+        class="form-card-tag"
+        type="text"
+        name="tag"
+        placeholder="Tag"
+      />
+      <button class="btn" type="submit" formaction="add-new-card">Criar</button>
+    </form>
 
-<form method="post">
-  {% csrf_token %}
-  <label for="titulo">Título</label>
-  <input id="titulo" type="text" name="titulo" />
-  <label for="detalhes">Detalhes</label>
-  <textarea id="detalhes" name="detalhes"></textarea>
-  <label for="tag">Tag</label>
-  <input id="tag" type="text" name="tag" />
-  <input type="submit" />
-</form>
 
-<ul>
-    {% for note in notes %}
-    <li>{{ note.title }}</li> 
-    {{ note.content }}
-    {% endfor %}
-</ul>
+    <div class="card-container">
+      <ul>
+        {% for note in notes %}
+        <li>-> {{ note.title }}</li>
+          {{ note.content }}
+          {{ note.tag.name }}
+        <!-- Passar todo esse conteúdo pelo template 'note.html' e depois trazer para cá. -->
+        {% endfor %}
+
+      </ul>  
+    </div>
+  </main>
 {% endblock %}

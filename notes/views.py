@@ -20,6 +20,11 @@ def index(request):
 
         new_note = Note.objects.create(title=title, content=content, tag= tag)        
         return redirect('index')
+
+    # elif request.method == 'GET':
+    #     #! Trata todos os chamados de GET    
+    #     pass 
+
         
     else:
         all_notes = Note.objects.all()

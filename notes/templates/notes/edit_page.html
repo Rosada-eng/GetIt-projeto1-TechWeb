@@ -1,0 +1,42 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block extra_head %} 
+
+  <link rel="stylesheet" href= "{% static 'notes/styles/edit_page.css' %}" />
+
+{% endblock %}
+
+{% block content %}
+  <main class="container">
+    <form class="form-card" method='post'>
+      {% csrf_token %}
+      <div class="form-inputs-container">
+        <input
+          class="form-card-title"
+          type="text"
+          name="title"
+          placeholder="[EDIT] {{note.title}}"
+        ></input>
+        <input
+          class="form-card-tag"
+          type="text"
+          name="tag"
+          placeholder={{note.tag.name}}
+        />
+      </div>
+      <textarea
+        class="autoresize"
+        name="content"
+      >{{ note.content }}
+      </textarea>
+      <button class="btn" 
+              type="submit" 
+              formaction="edition-completed-{{note.id}}"
+              name="note_id"
+              value={{note.id}}>
+              Editar
+      </button>
+    </form>
+  </main>
+{% endblock %}

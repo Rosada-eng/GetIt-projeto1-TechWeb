@@ -1,0 +1,88 @@
+{% extends "notes/base.html" %}
+{% load static %}
+
+{% block extra_head %} 
+
+  <link rel="stylesheet" href= "{% static 'notes/styles/main.css' %}" />
+  
+  {% if filter_tags %}
+  <link rel="stylesheet" href= "{% static 'notes/styles/filter_on.css' %}" />
+  
+  {% endif %}
+  {% endblock %}
+
+{% block content %}
+  <main class="container">
+    <form class="form-tags" method='get'>
+      {% csrf_token %}
+      {% for tag in tags %}
+      <button class="tag {{tag.id}}" 
+              type="submit"
+              formaction="filter-by-tag"
+              name="tag_id"
+              value={{tag.id}}> 
+              {{ tag.name }}
+      </button>
+      {% endfor %}
+      <button class="material-icons reset"
+              type='submit'
+              formaction="clear-filter">
+              <i>highlight_off</i>
+      </button>
+    </form>
+    <form class="form-card" method='post'>
+      {% csrf_token %}
+      <div class="form-inputs-container">
+        <input
+          class="form-card-title"
+          type="text"
+          name="title"
+          placeholder="Título"
+        />
+        <input
+          class="form-card-tag"
+          type="text"
+          name="tag"
+          placeholder="Tag"
+        />
+      </div>
+      <textarea
+      class="autoresize"
+      name="content"
+      placeholder="Digite o conteúdo..."
+      ></textarea>
+      <button class="btn" type="submit" formaction="add-new-card">Criar</button>
+    </form>
+
+
+    <div class="card-container">
+      {% for note in notes %}
+        <form class="card {{note.id}}" method='post'>
+          {% csrf_token %}
+          <div class="card-header">
+            <span class="card-tag">{{ note.tag.name }}</span>      
+            <button class="material-icons edit"
+                    type='submit'
+                    formaction="edit-card-{{note.id}}"
+                    name="note_id"
+                    value={{note.id}}>
+                    <i>edit</i>
+                  </button>
+            <button class="material-icons clear"
+                  type="submit"
+                  formaction="delete-card-{{ note.id }}"
+                  name="note_id"
+                  value={{note.id}}>
+                  <i>clear</i>
+            </button>
+          </div>
+          <h3 class="card-title">{{ note.title }}</h3>
+          <div class="card-content">
+            <p>{{ note.content }}</p>
+          </div>
+        </form>
+      {% endfor %}
+    </div>
+
+  </main>
+{% endblock %}

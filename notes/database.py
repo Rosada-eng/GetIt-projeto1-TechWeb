@@ -49,23 +49,7 @@ def delete_note(note_id):
     n_deleted = Note.objects.get(id=note_id).delete()
     return n_deleted
 
-#! CREATE_TAG
-def add_tag():
-    return
-
-#! GET_ONE_TAG
-def get_one_tag():
-    return
-
 #! GET_ALL_TAGS 
 def get_all_tags():
     tags = Tag.objects.all()
     return tags
-
-#! UPDATE_TAG
-def edit_tag():
-    return
-
-#! DELETE_TAG
-def delete_tag():
-    return

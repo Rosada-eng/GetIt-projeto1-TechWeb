@@ -18,13 +18,19 @@ def check_for_changes(new_title, new_tag, new_content, note_id):
         tag = new_tag
 
     content = re.sub("(\\r\\n(\s*))*$", '', new_content)
-     
-
     return title, tag, content
 
 def index(request):
-    all_notes = get_all_notes()
-    return render (request, "notes/index.html", {'notes': all_notes})
+    print(request.GET)
+    if 'tag_id' in request.GET.keys():
+        tag_id = int(request.GET.get('tag_id'))
+        notes = get_notes_by_tag(tag_id)
+
+    else:
+        notes = get_all_notes()
+
+    all_tags = get_all_tags()
+    return render (request, "notes/index.html", {'notes': notes, 'tags': all_tags})
 
 def add_card(request):
     """ 
@@ -70,8 +76,8 @@ def edition_completed(request):
     print(request.POST)
     note_id = int(request.POST.get('note_id'))
 
-    new_title   = request.POST.get('title')
-    new_tag     = request.POST.get('tag')
+    new_title       = request.POST.get('title')
+    new_tag         = request.POST.get('tag')
     new_content     = request.POST.get('content')
 
     title, tag, content  = check_for_changes(new_title, new_tag, new_content, note_id)
@@ -86,9 +92,9 @@ def edition_completed(request):
     return redirect('index')
 
 def remove_note(request):
-    print(request.POST)
     note_id = int(request.POST.get('note_id'))
-    print(f"id: {note_id}")
     delete_note(note_id)
     return redirect('index')
 
+def clear_filters(request):
+    return redirect('index')

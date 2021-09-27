@@ -20,6 +20,10 @@ def get_all_notes():
     notes = Note.objects.all()
     return notes
 
+def get_notes_by_tag(tag_id):
+    notes = Note.objects.filter(tag__id = tag_id).all()
+    return notes
+
 #! UPDATE_NOTE
 def edit_note(note_id, fields_to_be_edited):
     # checa se existe a tag. Se não existir, 
@@ -55,7 +59,8 @@ def get_one_tag():
 
 #! GET_ALL_TAGS 
 def get_all_tags():
-    return
+    tags = Tag.objects.all()
+    return tags
 
 #! UPDATE_TAG
 def edit_tag():

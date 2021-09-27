@@ -27,7 +27,11 @@
   <body>
     <div class="appbar">
       <img src="{% static 'notes/img/logo-getit.png' %}" class="logo" />
-      <span class="subtitle">Como o Post-it, mas com outro verbo</span>
+      <span class="subtitle-logo">Como o Post-it, mas com outro verbo</span>
+      <div class="tags-container">
+        <span class="subtitle-tag">Tags</span>
+        <img src="{% static 'notes/img/price-tag.png' %}" class="tags-img" />
+      </div>
     </div>
 
     {% block content %} {% endblock %}

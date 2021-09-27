@@ -9,6 +9,24 @@
 
 {% block content %}
   <main class="container">
+    <form class="form-tags" method='get'>
+      {% csrf_token %}
+      <!-- $ Colocar um div aqui para separar o botão de reset -->
+      {% for tag in tags %}
+      <button class="tag {{tag.id}}" 
+              type="submit"
+              formaction="filter-by-tag"
+              name="tag_id"
+              value={{tag.id}}> 
+              {{ tag.name }}
+      </button>
+      {% endfor %}
+      <button class="material-icons reset"
+              type='submit'
+              formaction="clear-filter">
+              <i>highlight_off</i>
+      </button>
+    </form>
     <form class="form-card" method='post'>
       {% csrf_token %}
       <div class="form-inputs-container">

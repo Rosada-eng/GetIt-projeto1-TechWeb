@@ -10,6 +10,42 @@ html, body {
   justify-content: space-around;
   align-items: center;
 }
+
+/*% TAGS_FILTER  */
+.form-tags{
+  display: flex;
+  min-height: 2rem;
+  min-width: 20rem;
+  max-width: 50rem;
+  margin-top: 5px;
+  margin-bottom: 1.5rem;
+  border: 1px;
+  border-radius: 0 0 10px 10px;
+  background-color: azure;
+  align-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
+  
+  justify-content: space-between;
+  box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.25);
+}
+
+.tag {
+  padding: 5px 10px 5px 10px;
+  margin: 10px;
+  border: .5px solid lightslategray;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #f7d736;
+}
+
+.tag:hover{
+  transform: scale(1.1);
+  background-color: #b5e4c5;  
+}
+
+
 /* ***** ADD-BUTTON ***** */
 .form-card {
   display: flex;
@@ -112,6 +148,11 @@ html, body {
   transition: width 0.2s ease-out, padding-top 0.2s ease-out;
 }
 
+.btn:hover{
+  background-color: #70eb9b;
+  transition: background-color 0.3s;
+}
+
 /* ***** CARDS ***** */
 .card-container {
   display: flex;
@@ -140,6 +181,7 @@ html, body {
 
 .card-tag {
   margin-right: auto;
+  text-align: center;
   font-size: smaller;
   color: #484444;
   padding: 2px 5px;
@@ -160,6 +202,13 @@ html, body {
   transition: .2s;
 }
 
+.reset{
+  font-size: 24px;
+}
+
+.reset:hover {
+  font-size: 30px;
+}
 .card-title{
   font-size: 18px;
   color:#2c2c2c;

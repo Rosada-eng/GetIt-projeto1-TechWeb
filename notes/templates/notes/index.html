@@ -15,7 +15,6 @@
   <main class="container">
     <form class="form-tags" method='get'>
       {% csrf_token %}
-      <!-- $ Colocar um div aqui para separar o botão de reset -->
       {% for tag in tags %}
       <button class="tag {{tag.id}}" 
               type="submit"
@@ -40,8 +39,6 @@
           name="title"
           placeholder="Título"
         />
-        <!-- ! Alterar a classe do form-card-tag p/ não aparecer 
-          !  o background, caso não tenha tag.name== None -->
         <input
           class="form-card-tag"
           type="text"

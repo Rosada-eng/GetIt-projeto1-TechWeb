@@ -28,25 +28,31 @@ document.addEventListener("DOMContentLoaded", function () {
     )} card-rotation-${getRandomInt(1, 11)}`;
   }
 
-  // formTags -- Elemento que quero ocultar
+  // Exibe / Oculta menu de filtro
   const formTags = document.querySelector(".form-tags")
-  // tagMenu -- elemento que vou clicar
-
   const tagMenu = document.querySelector(".tags-container");
 
   tagMenu.addEventListener("click", () => {
     console.log("Clicked")
     
-
     if (formTags.style.display === 'flex'){
       formTags.style.display = 'none';
-      // console.log("Altera de flex -> none")
     }
     else {
       formTags.style.display = 'flex';
-      // console.log("Altera de else -> flex") 
     }
-
   })
+
+  // Oculta background de notes sem tags
+  var cardTags = document.getElementsByClassName("card-tag")
+  console.log(cardTags)
+  for (tag of cardTags) {
+    console.log(tag.innerText)
+    if (tag.innerText == ""){
+      console.log(tag)
+      tag.style.backgroundColor = '#CECECE00';
+    }
+  }
+  
 });
 

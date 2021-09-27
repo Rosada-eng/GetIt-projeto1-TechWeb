@@ -27,4 +27,26 @@ document.addEventListener("DOMContentLoaded", function () {
       5
     )} card-rotation-${getRandomInt(1, 11)}`;
   }
+
+  // formTags -- Elemento que quero ocultar
+  const formTags = document.querySelector(".form-tags")
+  // tagMenu -- elemento que vou clicar
+
+  const tagMenu = document.querySelector(".tags-container");
+
+  tagMenu.addEventListener("click", () => {
+    console.log("Clicked")
+    
+
+    if (formTags.style.display === 'flex'){
+      formTags.style.display = 'none';
+      // console.log("Altera de flex -> none")
+    }
+    else {
+      formTags.style.display = 'flex';
+      // console.log("Altera de else -> flex") 
+    }
+
+  })
 });
+

@@ -25,12 +25,13 @@ def index(request):
     if 'tag_id' in request.GET.keys():
         tag_id = int(request.GET.get('tag_id'))
         notes = get_notes_by_tag(tag_id)
-
+        filter_tags = True
     else:
         notes = get_all_notes()
+        filter_tags = False
 
     all_tags = get_all_tags()
-    return render (request, "notes/index.html", {'notes': notes, 'tags': all_tags})
+    return render (request, "notes/index.html", {'notes': notes, 'tags': all_tags, 'filter_tags': filter_tags})
 
 def add_card(request):
     """ 

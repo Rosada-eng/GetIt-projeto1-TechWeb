@@ -4,8 +4,12 @@
 {% block extra_head %} 
 
   <link rel="stylesheet" href= "{% static 'notes/styles/main.css' %}" />
-
-{% endblock %}
+  
+  {% if filter_tags %}
+  <link rel="stylesheet" href= "{% static 'notes/styles/filter_on.css' %}" />
+  
+  {% endif %}
+  {% endblock %}
 
 {% block content %}
   <main class="container">

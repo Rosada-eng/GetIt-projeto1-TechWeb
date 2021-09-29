@@ -42,6 +42,38 @@ def load_template(path):
 
     return template
 
+def check_requested_body(request, requested_fields):
+    """ 
+        Analisa estrutura do request:
+            1- Request veio particionado corretamente ('\n\n')
+            2- Conteúdo do body veio completo
+
+        Retorna FALSE, se não estiver completo. TRUE, caso esteja ok.
+    """
+    request = request.replace('\r', '')
+    parts = request.split('\n\n')
+
+    #! Checa partição ('\n\n'):
+    if len(parts) <= 1: 
+        print("particão errada (\\n\\n) ")
+        return False
+
+    #! Checa se body veio vazio:
+    elif len(parts[1].strip()) == 0:
+        print("body vazio")
+        return False
+    
+    #! Checa se todos os parâmetros foram coletados:
+    params = extract_body_from_request(request)
+    for attribute in params.keys():
+        if attribute in requested_fields:
+            pass
+        else:
+            return False
+    
+    # Tudo OK
+    return True
+
 def extract_body_from_request(request):
     request = request.replace('\r', '') # Remove caracteres indesejados
 

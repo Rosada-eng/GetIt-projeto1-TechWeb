@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-v10yzaxf8h#q7y6907#si9%(-&$j+rn1p!x&nl9_u6l5nfvga6'
 
 #! SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['getit-techweb-guilherme-rosada.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ['getit-techweb-guilherme-rosada.herokuapp.com', 'localhost', '1
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -78,11 +79,15 @@ WSGI_APPLICATION = 'getit.wsgi.application'
 
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgresql://localhost/getit?user=getituser&password=getitsenha',
-        conn_max_age=600,
-        ssl_require=not DEBUG
-    )
+    # 'default': dj_database_url.config(
+    #     default='postgresql://localhost/getit?user=getituser&password=getitsenha',
+    #     conn_max_age=600,
+    #     ssl_require=not DEBUG
+    # )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3'
+    }
 }
 
 

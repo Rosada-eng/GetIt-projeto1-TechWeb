@@ -3,6 +3,12 @@ from .models import *
 from .database import *
 import re
 
+#! Bibliotecas para criação de API REST
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from django.http import Http404
+from .serializers import NoteSerializer
+
 
 def check_for_changes(new_title, new_tag, new_content, note_id):
     old_note = get_one_note(note_id)
@@ -98,4 +104,34 @@ def remove_note(request):
     return redirect('index')
 
 def clear_filters(request):
+
     return redirect('index')
+
+#<> configurações da API
+@api_view(['GET', 'POST'])
+def api_note(request, note_id=None):
+    if request.method == 'POST':
+        try:
+            note = Note.objects.get(id=note_id)
+            new_note_data   = request.data
+            note.title      = new_note_data['title']
+            note.content    = new_note_data['content']
+            note.save()
+            notes = Note.objects.all()
+            serialized_note = NoteSerializer(notes, many=True)
+
+        except Note.DoesNotExist:
+            raise Http404()
+
+    elif request.method == 'GET':
+        if note_id is None:
+            notes = Note.objects.all()
+            serialized_note = NoteSerializer(notes, many=True)
+
+        else:
+            note = Note.objects.get(id=note_id)
+            serialized_note = NoteSerializer(note)
+        
+
+
+    return Response(serialized_note.data)
